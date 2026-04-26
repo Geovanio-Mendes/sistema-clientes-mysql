@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Clientes</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        table { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; }
+        th { background-color: #4CAF50; color: white; padding: 12px; }
+        td { padding: 10px; text-align: center; border-bottom: 1px solid #ddd; }
+        tr:hover { background-color: #f5f5f5; }
+        .formulario { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; }
+        input { display: block; width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px; border: none; border-radius: 4px; width: 100%; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Clientes</h1>
+    <table>
+        <tr>
+            <th>ID</th><th>Nome</th><th>Email</th><th>Status</th>
+        </tr>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente[0] }}</td>
+            <td>{{ cliente[1] }}</td>
+            <td>{{ cliente[2] }}</td>
+            <td>{{ "Ativo" if cliente[4] == 1 else "Inativo" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="formulario">
+        <h2>Cadastrar Cliente</h2>
+        <form method="POST" action="/cadastrar">
+            <input type="text" name="nome" placeholder="Nome completo" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="cpf" placeholder="CPF" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>
